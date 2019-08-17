@@ -1,15 +1,15 @@
-const http = require('http');
+const express = require('express');
+const app = express();
+
 const readDir = require('./read-dir');
 
-function app(options) {
+module.exports = (options) => {
   const dir = options.dir || './shared';
 
-  const requestHandler = (request, response) => {
+  app.get('/api/files', (request, response) => {
     response.setHeader('Content-Type', 'application/json');
     response.end(JSON.stringify({ files: readDir(dir) }));
-  };
+  });
 
-  return http.createServer(requestHandler);
+  return app;
 }
-
-module.exports = app;
