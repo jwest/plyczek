@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-function readDir(basePath) {
+function readDir(basePath, baseDir) {
   function recursive(dir) {
     return fs.readdirSync(dir)
       .map(name => {
@@ -30,7 +30,7 @@ function readDir(basePath) {
       });    
   }
 
-  return recursive(basePath);
+  return recursive(path.join(path.normalize(basePath), path.normalize(baseDir)));
 }
 
 module.exports=readDir;
