@@ -4,8 +4,12 @@
   "description": "Plyczek is simple web file manager for sharing directory",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "supertest": "^4.0.2"
+  }
 }
