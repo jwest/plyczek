@@ -1,0 +1,11 @@
+{
+  "name": "plyczek",
+  "version": "1.0.0",
+  "description": "Plyczek is simple web file manager for sharing directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
