@@ -9,8 +9,10 @@ const options = {
 const request = supertest(app(options));
 
 test('should list sharing files and dirs', async done => {
+  // when
   const response = await request.get('/api/files');
 
+  // then
   expect(response.status).toBe(200);
   expect(response.body).toStrictEqual({
     files: [
@@ -42,6 +44,26 @@ test('should list sharing files and dirs', async done => {
       },
     ],
   });
+
+  done();
+});
+
+test('should download sharing files and dirs as zip file', async done => {
+  // when
+  const response = await request.get('/api/files');
+
+  // then
+  expect(response.status).toBe(200);
+  expect(response.body.files[0].name).toBe('embedded-sharing-dir');
+
+  // and
+  const zipResponse = await request.get(response.body.files[0].hrefs.download);  
+
+  // then
+  expect(zipResponse.status).toBe(200);
+
+  expect(zipResponse.headers['content-type']).toMatch(/^application\/zip/);
+  expect(zipResponse.headers['content-disposition']).toMatch(/^attachment; filename="embedded-sharing-dir.zip"/);
 
   done();
 });

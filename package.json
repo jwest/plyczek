@@ -13,6 +13,7 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-zip": "^2.0.1"
   }
 }
