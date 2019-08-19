@@ -11,10 +11,11 @@ module.exports = (options) => {
 
   app.get('/api/files', (request, response) => {
     const dir = request.query.path || '/';
-    console.log(`ACCESS '/api/files?path=${dir}'`);
+    const leafFilter = request.query.leaf;;
+    console.log(`ACCESS '/api/files?path=${dir}&leaf=${leafFilter}'`);
 
     response.setHeader('Content-Type', 'application/json');
-    response.end(JSON.stringify({ files: readDir(baseDir, dir) }));
+    response.end(JSON.stringify({ files: readDir(baseDir, dir, { filters: { leaf: leafFilter } }) }));
   });
 
   app.get('/api/download/zip', function (request, response) {
